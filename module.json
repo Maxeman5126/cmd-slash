@@ -7,6 +7,6 @@
     "options": {
         "reloadable": true
     },
-    "servers": ["https://raw.githubusercontent.com/maxeman/cmd-slash/master/"],
+    "servers": ["https://raw.githubusercontent.com/Maxeman5126/cmd-slash/master/"],
     "version": "2.09.07.v101.02"
 }
