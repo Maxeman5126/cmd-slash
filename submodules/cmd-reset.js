@@ -7,14 +7,14 @@ class CommandReset {
     this.command = parent.mod.command;
 
     // command
-    parent.mod.command.add(['res', 'ㄱㄷㄴ', 'ㄹㄹ', 'ff'], () => {
+    parent.mod.command.add(['res', 'reset', 'ff'], () => {
       parent.mod.send('C_RESET_ALL_DUNGEON', 1, {});
     });
 
   }
 
   destructor() {
-    this.command.remove(['res', 'ㄱㄷㄴ', 'ㄹㄹ', 'ff']);
+    this.command.remove(['res', 'reset', 'ff']);
 
     this.command = undefined;
   }

@@ -7,14 +7,14 @@ class CommandLobby {
     this.command = parent.mod.command;
 
     // command
-    parent.mod.command.add(['lobby', '로비'], () => {
+    parent.mod.command.add('lobby', () => {
       parent.mod.send('C_RETURN_TO_LOBBY', 1, {});
     });
 
   }
 
   destructor() {
-    this.command.remove(['lobby', '로비']);
+    this.command.remove('lobby');
 
     this.command = undefined;
   }

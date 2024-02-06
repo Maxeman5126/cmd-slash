@@ -3,12 +3,8 @@
 const AKASHA = 9031;
 const BARACOS = 9032;
 const LILITH = 3016;
-const CATALEPTICON = 3040;
-const GARDAN = 3042;
-const HARNOVOG = 3043;
-const ROGASH = 3046;
 
-class CommandAce {
+class cmd_ace {
 
   constructor(parent) {
 
@@ -16,28 +12,23 @@ class CommandAce {
     this.command = parent.mod.command;
 
     // command
-    parent.mod.command.add(['ace', 'ㅁㅊㄷ', '시던'], {
+    parent.mod.command.add(['ace'], {
       '$none': () => {
-        if (parent.mod.game.me.zone == AKASHA) this.enterAceDungeon(BARACOS, 1, 2);
-        else if (parent.mod.game.me.zone == BARACOS) this.enterAceDungeon(AKASHA, 1, 2);
-        //else if (parent.mod.game.me.zone == LILITH) this.enterAceDungeon(BARACOS, 1, 2);
-        else this.enterAceDungeon(BARACOS, 1, 2);
+        if (parent.mod.game.me.zone == AKASHA) this.enter_ace_dungeon(LILITH)
+        else if (parent.mod.game.me.zone == BARACOS) this.enter_ace_dungeon(AKASHA);
+        else if (parent.mod.game.me.zone == LILITH) this.enter_ace_dungeon(BARACOS);
+        else this.enter_ace_dungeon(BARACOS);
       },
       '$default': (arg) => {
-        arg = arg.toLowerCase();
-        if (arg == 'a' || arg == 'akasha') this.enterAceDungeon(AKASHA, 1, 2);
-        else if (arg == 'b' || arg == 'baracos') this.enterAceDungeon(BARACOS, 1, 2);
-        else if (arg == 'l' || arg == 'lilith') this.enterAceDungeon(LILITH, 1, 2);
-        else if (arg == 'c' || arg == 'catalepticon') this.enterAceDungeon(CATALEPTICON, 1, 2);
-        else if (arg == 'g' || arg == 'gardan') this.enterAceDungeon(GARDAN, 1, 2);
-        else if (arg == 'h' || arg == 'harnovog') this.enterAceDungeon(HARNOVOG, 1, 2);
-        else if (arg == 'r' || arg == 'rogash') this.enterAceDungeon(ROGASH, 1, 2);
+        if (arg == 'a' || arg == 'akasha') this.enter_ace_dungeon(AKASHA);
+        else if (arg == 'b' || arg == 'baracos') this.enter_ace_dungeon(BARACOS);
+        else if (arg == 'l' || arg == 'lilith') this.enter_ace_dungeon(LILITH);
       }
     });
 
     // code
     parent.mod.hook('S_SYSTEM_MESSAGE', 1, { order: 10 }, (e) => {
-      if (![AKASHA, BARACOS, LILITH, CATALEPTICON, GARDAN, HARNOVOG, ROGASH].includes(parent.mod.game.me.zone))
+      if (![AKASHA, BARACOS, LILITH].includes(parent.mod.game.me.zone))
         return;
 
       let msg = parent.mod.parseSystemMessage(e.message).id;
@@ -48,14 +39,11 @@ class CommandAce {
   }
 
   destructor() {
-    this.command.remove(['ace', 'ㅁㅊㄷ', '시던']);
-
-    this.command = undefined;
-    this.mod = undefined;
+    this.command.remove(['ace']);
   }
 
   // helper
-  enterAceDungeon(zone, a = 1, b = 2) {
+  enter_ace_dungeon(zone) {
     let res = this.parent.mod.trySend('C_DUNGEON_WORK_ENTER', 1, {
       count: 2,
       unk1: 13,
@@ -63,13 +51,13 @@ class CommandAce {
       random: 0,
       unk2: 13,
       unk3: 21,
-      challenge1: a,
+      challenge1: 1,
       unk4: 21,
-      challenge2: b
+      challenge2: 2
     });
-    if (!res) this.parent.send(`Unmapped protocol packet &lt;C_DUNGEON_WORK_ENTER&gt;.`);
+    !res ? this.parent.send(`Unmapped protocol packet &lt;C_DUNGEON_WORK_ENTER&gt;.`) : null;
   }
 
 }
 
-module.exports = CommandAce;
+module.exports = cmd_ace;

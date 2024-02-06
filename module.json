@@ -1,14 +1,12 @@
 {
-  "author": "seraphinush",
-  "conflicts": ["broker-anywhere","broker-command","cmd-broker","command-broker","cmd-slash-kr","cmd-general","exit-command","drop-party","exit-instantly"],
-  "description": "tera-toolbox module compilation to use slash commands for common functions",
-  "disableAutoUpdate": false,
-  "donationUrl": "https://www.paypal.me/seraphinush",
-  "name": "cmd-slash",
-  "options": {
-    "reloadable": true
-  },
-  "servers": ["https://raw.githubusercontent.com/seraphinush-gaming/cmd-slash/master/"],
-  "supportUrl": "https://github.com/seraphinush-gaming/cmd-slash/blob/master/README.md",
-  "version": "2.0c.01.v110.02"
+    "author": "seraphinush (modified by maxeman)",
+    "conflicts": ["cmd-slash-kr","cmd-general","drop-party"],
+    "description": "tera-toolbox module compilation to use slash commands for common functions",
+    "disableAutoUpdate": false,
+    "name": "cmd-slash",
+    "options": {
+        "reloadable": true
+    },
+    "servers": ["https://raw.githubusercontent.com/maxeman/cmd-slash/master/"],
+    "version": "2.09.07.v101.02"
 }

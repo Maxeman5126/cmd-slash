@@ -7,14 +7,14 @@ class CommandDrop {
     this.command = parent.mod.command;
 
     // command
-    parent.mod.command.add(['dr', 'ㅇㄱ', 'ㅌㅌ', 'xx'], () => {
+    parent.mod.command.add(['dr', 'drop', 'leave'], () => {
       parent.mod.send('C_LEAVE_PARTY', 1, {});
     });
 
   }
 
   destructor() {
-    this.command.remove(['dr', 'ㅇㄱ', 'ㅌㅌ', 'xx']);
+    this.command.remove(['dr', 'drop', 'leave']);
 
     this.command = undefined;
   }
